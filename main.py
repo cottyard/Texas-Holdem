@@ -159,9 +159,15 @@ def evaluate_hand():
 
 def add_to_statistics():
     global statistics_total_hands
+    try:
+        del evaluate_result['nothing']
+    except KeyError:
+        pass
     for key in evaluate_result:
         if evaluate_result[key]:
             statistics[key] += 1
+    if len(evaluate_result.keys()) == 0:
+        statistics['nothing'] += 1
     statistics_total_hands += 1
 
 
